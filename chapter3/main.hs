@@ -9,3 +9,14 @@ sayMe 3 = "Three!"
 sayMe 4 = "Four!"
 sayMe 5 = "Five!"
 sayMe x = "Not between 1 and 5"
+
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+
+addVectors :: (Double, Double) -> (Double, Double) -> (Double, Double)
+addVectors (a1, a2) (b1, b2) = (a1 + b1, a2 + b2)
+
+head' :: [a] -> a
+head' [] = error "Can't call head on an empty list, dummy!"
+head' (x:_) = x
