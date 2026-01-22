@@ -25,19 +25,16 @@ firstLetter :: String -> String
 firstLetter "" = "Empty string, whoops!"
 firstLetter all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
 
-bmiTell :: Double -> String
-bmiTell bmi
-  | bmi <= 18.5 = "You are underweight, you emo, you!"
-  | bmi <= 25.0 = "You are supposedly normal. Pffft, I bet you're ugly!"
-  | bmi <= 30.0 = "You're fat! Lose some weight, fatty!"
-  | otherwise   = "You are a whale, congratulations!"
-
-bmiTell' :: Double -> Double -> String
-bmiTell' weight height
-  | weight / height ^ 2 <= 18.5 = "You are underweight, you emo, you!"
-  | weight / height ^ 2 <= 25.0 = "You are supposedly normal. Pffft, I bet you're ugly!"
-  | weight / height ^ 2 <= 30.0 = "You're fat! Lose some weight, fatty!"
+bmiTell :: Double -> Double -> String
+bmiTell weight height
+  | bmi <= skinny = "You are underweight, you emo, you!"
+  | bmi <= normal = "You are supposedly normal. Pffft, I bet you're ugly!"
+  | bmi <= fat = "You're fat! Lose some weight, fatty!"
   | otherwise                   = "You are a whale, congratulations!"
+  where bmi = weight / height ^ 2
+        skinny = 18.5
+        normal = 25.0
+        fat = 30.0
 
 max' :: (Ord a) => a -> a -> a
 max' a b
@@ -49,3 +46,7 @@ a `myCompare` b
   | a == b    = EQ
   | a > b     = LT
   | otherwise = GT
+
+calcBmis :: [(Double, Double)] -> [Double]
+calcBmis xs = [bmi w h | (w, h) <- xs]
+  where bmi weight height = weight / height ^ 2
