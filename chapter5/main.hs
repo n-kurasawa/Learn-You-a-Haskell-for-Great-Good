@@ -11,6 +11,16 @@ flip' :: (a -> b -> c) -> (b -> a -> c)
 --   where g x y = f y x
 flip' f x y = f y x
 
+map' :: (a -> b) -> [a] -> [b]
+map' _ [] = []
+map' f (x:xs) = f x : map' f xs
+
+filter' :: (a -> Bool) -> [a] -> [b]
+filter' _ [] = []
+filter' p (x:xs)
+  | p x = x : filter' p xs
+  | otherwise = filter' p xs
+
 main :: IO ()
 main = do
   print (applyTwice (+3) 10)
