@@ -74,3 +74,6 @@ last' = foldl1 (\_ x -> x)
 
 sqrtSums :: Int
 sqrtSums = length (takeWhile (<1000) (scanl1 (+) (map sqrt [1..]))) + 1
+
+oddSquareSum :: Integer
+oddSquareSum = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]
