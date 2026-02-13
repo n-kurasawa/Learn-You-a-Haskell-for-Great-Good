@@ -10,3 +10,9 @@ vplus :: (Num a) => Vector a -> Vector a -> Vector a
 
 vmult :: (Num a) => Vector a -> a -> Vector a
 (Vector i j k) `vmult` m = Vector (i * m) (j * m) (k * m)
+
+data Person = Person
+  { firstNmae :: String,
+    lastName :: String,
+    age :: Int
+  }
