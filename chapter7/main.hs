@@ -16,3 +16,4 @@ data Person = Person
     lastName :: String,
     age :: Int
   }
+  deriving (Eq, Show, Read)
