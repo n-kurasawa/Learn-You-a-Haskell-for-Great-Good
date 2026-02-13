@@ -1,3 +1,4 @@
+import Data.Map qualified as Map
 import Shapes
 
 main = do
@@ -17,3 +18,17 @@ data Person = Person
     age :: Int
   }
   deriving (Eq, Show, Read)
+
+data LockerState = Taken | Free deriving (Show, Eq)
+
+type Code = String
+
+type LockerMap = Map.Map Int (LockerState, Code)
+
+lockerLookup :: Int -> LockerMap -> Either String Code
+lockerLookup lockerNumber map = case Map.lookup lockerNumber map of
+  Nothing -> Left $ "Locker " ++ show lockerNumber ++ " dose'nt exist!"
+  Just (state, code) ->
+    if state /= Taken
+      then Right code
+      else Left $ "Locker " ++ show lockerNumber ++ " is alrady taken!"
