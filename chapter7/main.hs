@@ -90,3 +90,7 @@ yesnoif yesnoVal yesResult noResult =
   if yesno yesnoVal
     then yesResult
     else noResult
+
+instance Functor Tree where
+  fmap f EmptyTree = EmptyTree
+  fmap f (Node x left right) = Node (f x) (fmap f left) (fmap f right)
