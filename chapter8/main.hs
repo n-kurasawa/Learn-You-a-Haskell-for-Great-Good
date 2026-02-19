@@ -13,3 +13,7 @@ main = do
       ++ " "
       ++ bigLasName
       ++ ", how are you?"
+
+  putStr "Hey, "
+  putStr "I'm "
+  putStrLn "Andy!s"
