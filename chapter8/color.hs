@@ -6,7 +6,6 @@ main = do
       "Which color do you assosiate with the number "
         ++ show a
         ++ "?"
-    color <- getLine
-    return color
+    getLine
   putStrLn "The colors that you assosiate with 1, 2, 3 and 4 are: "
   mapM putStrLn colors
