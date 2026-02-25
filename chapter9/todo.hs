@@ -1,3 +1,4 @@
+import Control.Exception
 import Data.List
 import System.Directory
 import System.Environment
