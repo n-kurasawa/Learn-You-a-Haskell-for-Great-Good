@@ -19,3 +19,7 @@ myAction = do
 
 myAction' :: IO String
 myAction' = (++) <$> getLine <*> getLine
+
+sequenceA :: (Applicative f) => [f a] -> f [a]
+sequenceA [] = pure []
+sequenceA (x : xa) = (:) <$> x <*> sequenceA xs
