@@ -15,3 +15,12 @@ isBigGang x = (x > 9, "Compared gang size to 9.")
 
 applyLog :: (Monoid m) => (a, m) -> (a -> (b, m)) -> (b, m)
 applyLog (x, log) f = let (y, newLog) = f x in (y, log `mappend` newLog)
+
+gcd' :: Int -> Int -> Writer [String] Int
+gcd' a b
+  | b == 0 = do
+      tell ["Finished with " ++ show a]
+      return a
+  | otherwise = do
+      tell [show a ++ " mod " ++ show b ++ " = " ++ show (a `mod` b)]
+      gcd' b (a `mod` b)
