@@ -34,3 +34,11 @@ gcdReverse a b
       resutl <- gcdReverse b (a `mod` b)
       tell [show a ++ " mod " ++ show b ++ " = " ++ show (a `mod` b)]
       return a
+
+newtype DiffList a = DiffList {getDiffList :: [a] -> [a]}
+
+toDiffList :: [a] -> DiffList a
+toDiffList xs = DiffList (xs ++)
+
+fromDiffList :: DiffList a -> [a]
+fromDiffList (DiffList f) = f []
