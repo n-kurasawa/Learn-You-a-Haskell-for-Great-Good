@@ -55,3 +55,7 @@ finalCountDown 0 = do
 finalCountDown x = do
   finalCountDown (x - 1)
   tell (toDiffList [show x])
+
+let f = (*5)
+let g = (+3)
+(fmap f g) 8
