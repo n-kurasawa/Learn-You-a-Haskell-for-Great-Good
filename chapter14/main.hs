@@ -1,3 +1,4 @@
+import Control.Monad.Instances
 import Control.Monad.Writer
 
 logNumber :: Int -> Writer [String] Int
@@ -56,6 +57,8 @@ finalCountDown x = do
   finalCountDown (x - 1)
   tell (toDiffList [show x])
 
-let f = (*5)
-let g = (+3)
-(fmap f g) 8
+addStuff :: Int -> Int
+addStuff = do
+  a <- (* 2)
+  b <- (+ 10)
+  return (a + b)
