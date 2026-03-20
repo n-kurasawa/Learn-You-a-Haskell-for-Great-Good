@@ -1,4 +1,5 @@
 import Control.Monad.Instances
+import Control.Monad.State
 import Control.Monad.Writer
 
 logNumber :: Int -> Writer [String] Int
@@ -62,3 +63,17 @@ addStuff = do
   a <- (* 2)
   b <- (+ 10)
   return (a + b)
+
+type Stack = [Int]
+
+pop :: State Stack Int
+pop = state $ \(x : xs) -> (x, xs)
+
+push :: Int -> State Stack ()
+push a = state $ \xs -> ((), a : xs)
+
+stackManip :: State Stack Int
+stackManip = do
+  push 3
+  a <- pop
+  pop
