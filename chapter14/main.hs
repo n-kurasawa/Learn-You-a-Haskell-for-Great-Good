@@ -1,6 +1,7 @@
 import Control.Monad.Instances
 import Control.Monad.State
 import Control.Monad.Writer
+import System.Random
 
 logNumber :: Int -> Writer [String] Int
 logNumber x = writer (x, ["Got number:" ++ show x])
@@ -100,3 +101,13 @@ stackyStack = do
   if stackNow == [1, 2, 3]
     then put [8, 3, 1]
     else put [9, 2, 1]
+
+randomSt :: (RandomGen g, Random a) => State g a
+randomSt = state random
+
+threeCoins :: State StdGen (Bool, Bool, Bool)
+threeCoins = do
+  a <- randomSt
+  b <- randomSt
+  c <- randomSt
+  return (a, b, c)
