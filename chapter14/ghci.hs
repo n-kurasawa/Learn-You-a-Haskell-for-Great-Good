@@ -8,3 +8,6 @@ main = do
   print $ join (Just (Just 9))
 
   print $ join [[1, 2, 3], [4, 5, 6]]
+
+  let g = (\x -> return (x + 1)) <=< (\x -> return (x * 100))
+  print $ Just 4 >>= g
