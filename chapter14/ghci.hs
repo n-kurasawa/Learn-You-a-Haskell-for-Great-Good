@@ -11,3 +11,6 @@ main = do
 
   let g = (\x -> return (x + 1)) <=< (\x -> return (x * 100))
   print $ Just 4 >>= g
+
+  let f = foldr (.) id [(+ 8), (* 100), (+ 1)]
+  print $ f 1
