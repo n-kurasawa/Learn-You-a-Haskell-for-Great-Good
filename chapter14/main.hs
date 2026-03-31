@@ -1,6 +1,7 @@
 import Control.Monad.Instances
 import Control.Monad.State
 import Control.Monad.Writer
+import Data.List
 import System.Random
 
 logNumber :: Int -> Writer [String] Int
