@@ -63,3 +63,28 @@ data Crumb a
   deriving (Show)
 
 type Zipper a = (Tree a, Breadcrumbs a)
+
+modify :: (a -> a) -> Zipper a -> Zipper a
+modify f (Node x l r, bs) = (Node (f x) l r, bs)
+modify f (Empty, bs) = (Empty, bs)
+
+attach :: Tree a -> Zipper a -> Zipper a
+attach t (_, bs) = (t, bs)
+
+topMost :: Zipper a -> Zipper a
+topMost (t, []) = (t, [])
+topMost z = topMost (goUp z)
+
+type ListZipper a = ([a], [a])
+
+goForward :: ListZipper a -> ListZipper a
+goForward (x : xs, bs) = (xs, x : bs)
+
+goBack :: ListZipper a -> ListZipper a
+goBack (xs, b : bs) = (b : xs, bs)
+
+type Name = String
+
+type Data = String
+
+data FSItem = File Name Data | Folder Name [FSItem] deriving (Show)
